@@ -1,0 +1,448 @@
+<!-- Product Overview -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Community Hub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Simplify everyday living for your housing society!">
+  <meta name="google-site-verification" content="P8hqAw19_O3IT82LJYjlEsI9TDS9vMATQkZXKoe2M8E">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- AOS Animation Library -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <% if (process.env.NODE_ENV === 'production') { %>
+    <%- include('scripts/adsense') %>
+    <%- include('scripts/tagManager') %>
+  <% } %>
+</head>
+
+<body>
+  <!-- Modern Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top modern-navbar">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <img src="images/diversity.png" alt="Community Hub" class="me-2" style="height: 40px;">
+        <span class="brand-text">Community Hub</span>
+      </a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link smooth-scroll" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smooth-scroll" href="#stats">Statistics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link smooth-scroll" href="#contact">Contact</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link btn btn-outline-light me-2 px-3" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary px-3" href="/signup">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Modern Hero Section -->
+  <section class="hero-section" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="container-fluid h-100">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-8 col-md-10 text-center">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              <span class="text-primary">Community Hub</span>
+            </h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+              Revolutionize your housing society management with our comprehensive digital platform. 
+              Streamline payments, enhance communication, and build stronger communities.
+            </p>
+            <div class="hero-buttons-container" data-aos="fade-up" data-aos-delay="300">
+              <div class="hero-main-buttons-flex">
+                <a class="btn btn-pastel-primary btn-lg cta-button" href="/login">
+                  <i class="fas fa-sign-in-alt me-2"></i>Get Started
+                </a>
+                <a class="btn btn-pastel-success btn-md secondary-cta" href="/signup">
+                  <i class="fas fa-user-plus me-1"></i>Sign Up
+                </a>
+                <a class="btn btn-pastel-info btn-md secondary-cta" href="/register">
+                  <i class="fas fa-building me-1"></i>Register Society
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="500">
+        <a href="#features" class="smooth-scroll">
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+  <br>
+  <!-- Modern Features Section -->
+  <section class="features-section py-5" id="features">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title" data-aos="fade-up">Why Choose Community Hub?</h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Transform your community management with our comprehensive suite of features
+          </p>
+        </div>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Feature 1 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Simple Connectivity</h4>
+              <p>Enable effortless resident connections with administrator-approved account activation for enhanced security and community building.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 2 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Hassle-free Communication</h4>
+              <p>Keep everyone informed with digital noticeboards, event announcements, and seamless community-wide messaging systems.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 3 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Smart Money Management</h4>
+              <p>Streamline payments with integrated gateways, automatic e-receipts, and transparent dues tracking for financial clarity.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 4 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Helpdesk Resolution</h4>
+              <p>Efficient maintenance request management with real-time tracking, feedback systems, and quick resolution workflows.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 5 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Emergency Contacts</h4>
+              <p>Always be prepared with configurable emergency contact lists including police, medical services, and local utilities.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Feature 6 -->
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="feature-card h-100">
+            <div class="feature-icon">
+              <i class="fas fa-user-cog"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Profile Management</h4>
+              <p>Flexible resident profile management with secure data handling and easy information updates for community members.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Statistics Section -->
+  <section class="stats-section py-5" id="stats">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title text-white" data-aos="fade-up">
+            Powering Communities Across The Globe
+          </h2>
+          <p class="section-subtitle text-white-50" data-aos="fade-up" data-aos-delay="100">
+            Join thousands of satisfied communities already using Community Hub
+          </p>
+        </div>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="stat-card text-center h-100">
+            <div class="stat-icon">
+              <i class="fas fa-city"></i>
+            </div>
+            <div class="stat-number">
+              <span class="counter" data-target="<%= city %>">0</span>+
+            </div>
+            <div class="stat-label">Cities Served</div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="stat-card text-center h-100">
+            <div class="stat-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <div class="stat-number">
+              <span class="counter" data-target="<%= society %>">0</span>+
+            </div>
+            <div class="stat-label">Housing Societies</div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="stat-card text-center h-100">
+            <div class="stat-icon">
+              <i class="fas fa-home"></i>
+            </div>
+            <div class="stat-number">
+              <span class="counter" data-target="<%= user %>">0</span>+
+            </div>
+            <div class="stat-label">Happy Homes</div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="stat-card text-center h-100">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-number">
+              <span class="counter" data-target="<%= visit %>">0</span>+
+            </div>
+            <div class="stat-label">Active Users</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern Contact Section -->
+  <section class="contact-section py-5" id="contact">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+          <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+          </p>
+        </div>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+          <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+            <form class="contact-form" action="mailto:contact@communityhub.com" method="POST" enctype="text/plain">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="name" name="Name" placeholder="Your Name" required>
+                    <label for="name">Your Name</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input type="email" class="form-control" id="email" name="Email" placeholder="name@example.com" required>
+                    <label for="email">Email Address</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="subject" name="Subject" placeholder="Subject" required>
+                    <label for="subject">Subject</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating">
+                    <textarea class="form-control" id="message" name="Message" placeholder="Your message" style="height: 120px" required></textarea>
+                    <label for="message">Your Message</label>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-primary btn-lg contact-submit-btn">
+                    <i class="fas fa-paper-plane me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contact Info Cards -->
+      <div class="row g-4 mt-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- External Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+    
+    // Ensure hero title appears immediately
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroTitle = document.querySelector('.hero-title');
+      if (heroTitle) {
+        heroTitle.style.opacity = '1';
+        heroTitle.style.transform = 'translateY(0)';
+      }
+    });
+    
+    // Smooth scrolling for navigation links with offset for fixed navbar
+    document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          const navbarHeight = document.querySelector('.modern-navbar').offsetHeight;
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Enhanced counter animation
+    function animateCounter(element, target, duration = 2000) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        element.textContent = Math.floor(start);
+        if (start >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        }
+      }, 16);
+    }
+    
+    // Trigger counters when stats section is in view
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.counter').forEach(counter => {
+              const target = parseInt(counter.getAttribute('data-target'));
+              animateCounter(counter, target);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      observer.observe(statsSection);
+    }
+    
+    // Add interactive hover effects to feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+      });
+    });
+    
+    // Navbar background opacity on scroll
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.modern-navbar');
+      if (window.scrollY > 50) {
+        navbar.style.backgroundColor = 'rgba(33, 37, 41, 0.95)';
+        navbar.style.backdropFilter = 'blur(10px)';
+      } else {
+        navbar.style.backgroundColor = 'rgba(33, 37, 41, 0.9)';
+        navbar.style.backdropFilter = 'none';
+      }
+    });
+    
+    // Add loading animation to contact form submit
+    document.querySelector('.contact-submit-btn')?.addEventListener('click', function(e) {
+      const btn = this;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }, 2000);
+    });
+    
+    // Removed typing animation for instant title display
+    // Title now loads immediately with the page
+  </script>
+  
+<%- include('partials/footer') %>

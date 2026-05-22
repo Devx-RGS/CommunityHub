@@ -1,0 +1,104 @@
+<%- include('partials/header') %>
+
+<div class="main-flex-wrapper">
+  <div class="page-container">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-heading">
+        <span><i class="fas fa-edit me-2"></i>New Request</span>
+      </div>
+
+      <!-- Form Card -->
+      <div class="content-card">
+        <div class="card-header">
+          <div class="card-title d-flex align-items-center">
+            <i class="fas fa-user-edit me-2" style="color: #3b82f6;"></i>
+            <span>Update Your Information</span>
+          </div>
+          <p class="card-description mb-0">Please update your details and resubmit for approval</p>
+        </div>
+
+        <form class="modern-form" action="/newRequest" method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="firstName" class="form-label">
+                  <i class="fas fa-user me-2"></i>First Name
+                </label>
+                <input name="firstName" type="text" id="firstName" class="form-control modern-input" 
+                       value="<%= user.firstName %>" autofocus required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="lastName" class="form-label">
+                  <i class="fas fa-user me-2"></i>Last Name
+                </label>
+                <input name="lastName" type="text" id="lastName" class="form-control modern-input" 
+                       value="<%= user.lastName %>" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="phoneNumber" class="form-label">
+                  <i class="fas fa-phone me-2"></i>Phone Number
+                </label>
+                <input name="phoneNumber" type="tel" id="phoneNumber" class="form-control modern-input" 
+                       value="<%= user.phoneNumber %>" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="flatNumber" class="form-label">
+                  <i class="fas fa-home me-2"></i>Flat Number
+                </label>
+                <input name="flatNumber" type="text" id="flatNumber" class="form-control modern-input" 
+                       value="<%= user.flatNumber %>" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="societyName" class="form-label">
+                  <i class="fas fa-building me-2"></i>Society Name
+                </label>
+                <input name="societyName" list="societyList" id="societyName" class="form-control modern-input" 
+                       value="<%= user.societyName %>" autocomplete="off" required>
+                <datalist id="societyList">
+                  <% societies.forEach(society => { %>
+                    <option value="<%= society.societyName %>">
+                  <% }) %>
+                </datalist>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="squareFeet" class="form-label">
+                  <i class="fas fa-ruler me-2"></i>House Area (sq ft)
+                </label>
+                <input name="squareFeet" type="number" id="squareFeet" class="form-control modern-input" 
+                       value="<%= user.squareFeet || '' %>" required>
+              </div>
+            </div>
+          </div>
+          <!-- Form Actions -->
+          <div class="form-actions d-flex gap-3 justify-content-end mt-4">
+            <a href="/home" class="btn btn-pastel-warning">
+              <i class="fas fa-times me-2"></i>Cancel
+            </a>
+            <button type="submit" class="btn btn-modern-primary">
+              <i class="fas fa-paper-plane me-2"></i>Submit Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

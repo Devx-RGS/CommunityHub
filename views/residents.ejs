@@ -1,0 +1,126 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-heading">
+      <span>Residents</span>
+    </div>
+
+    <% if(isAdmin && appliedResidents.length > 0) { %>
+      <!-- Pending Approvals Section -->
+      <div class="content-card mb-4">
+        <div class="card-header">
+          <div class="card-title d-flex align-items-center">
+            <i class="fas fa-user-clock me-2" style="color: #f59e0b;"></i>
+            <span>Pending Approvals</span>
+            <span class="ms-auto badge bg-warning rounded-pill"><%= appliedResidents.length %></span>
+          </div>
+          <p class="card-description mb-0">Review and approve resident registration requests</p>
+        </div>
+        
+        <div class="row g-4">
+          <form action="/approveResident" method="POST" class="w-100">
+            <% appliedResidents.forEach(user => { %>
+              <div class="col-md-6 col-lg-4 mb-4">
+                <div class="approval-card">
+                  <div class="approval-header">
+                    <div class="resident-avatar" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                      <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="user-info">
+                      <h5 class="resident-name"><%= user.firstName %> <%= user.lastName %></h5>
+                      <span class="flat-badge" style="background: #f59e0b;"><%= user.flatNumber %></span>
+                    </div>
+                  </div>
+                  
+                  <div class="approval-details">
+                    <div class="detail-item">
+                      <i class="fas fa-phone text-primary"></i>
+                      <span><%= user.phoneNumber %></span>
+                    </div>
+                    <div class="detail-item">
+                      <i class="fas fa-envelope text-primary"></i>
+                      <span style="word-break: break-all; font-size: 0.85rem;"><%= user.username %></span>
+                    </div>
+                    <div class="detail-item">
+                      <i class="fas fa-home text-primary"></i>
+                      <span><%= user.squareFeet %> sq ft</span>
+                    </div>
+                  </div>
+                  
+                  <div class="approval-actions">
+                    <button class="btn btn-success btn-sm" type="submit" 
+                            name="validate[<%= user._id %>]" value="approved">
+                      <i class="fas fa-check me-1"></i>Approve
+                    </button>
+                    <button class="btn btn-danger btn-sm" type="submit" 
+                            name="validate[<%= user._id %>]" value="declined">
+                      <i class="fas fa-times me-1"></i>Decline
+                    </button>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </form>
+        </div>
+      </div>
+    <% } %>
+    
+    <!-- Active Residents Section -->
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-users me-2" style="color: #10b981;"></i>
+          <span>Residents of <%= societyName %></span>
+          <span class="ms-auto badge bg-success rounded-pill"><%= societyResidents.length %></span>
+        </div>
+        <p class="card-description mb-0">Active residents in your community</p>
+      </div>
+      
+      <div class="row g-4">
+        <% if(societyResidents.length === 0) { %>
+          <div class="col-12">
+            <div class="text-center py-5">
+              <i class="fas fa-users fa-3x mb-3" style="color: #94a3b8;"></i>
+              <h5 style="color: #64748b;">No Active Residents</h5>
+              <p style="color: #94a3b8;">There are no approved residents in your community yet.</p>
+            </div>
+          </div>
+        <% } else { %>
+          <% societyResidents.forEach((resident) => { %>
+            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+              <div class="resident-card h-100">
+                <div class="resident-header">
+                  <div class="resident-avatar" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                    <i class="fas fa-user"></i>
+                  </div>
+                  <div class="resident-info">
+                    <h5 class="resident-name"><%= resident.firstName %> <%= resident.lastName %></h5>
+                    <span class="flat-number-badge"><%= resident.flatNumber %></span>
+                  </div>
+                </div>
+                
+                <div class="resident-details">
+                  <div class="detail-item">
+                    <i class="fas fa-phone text-primary"></i>
+                    <span><%= resident.phoneNumber %></span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-envelope text-primary"></i>
+                    <span style="word-break: break-all; font-size: 0.85rem;"><%= resident.username %></span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-home text-primary"></i>
+                    <span><%= resident.squareFeet %> sq ft</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,154 @@
+<%- include('partials/header') %>
+
+<div class="page-container" style="padding: 2rem 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="content-card">
+          <div class="card-header text-center">
+            <div class="card-title d-flex align-items-center justify-content-center">
+              <i class="fas fa-file-invoice-dollar me-2" style="color: #059669;"></i>
+              <span>Edit Maintenance Bill</span>
+            </div>
+            <p class="card-description mb-0">Update maintenance charges for your community</p>
+          </div>
+          
+          <form action="/editBill" method="POST" class="modern-form">
+            <!-- Basic Charges -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-home me-2"></i>Basic Charges
+              </h6>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="societyCharges">
+                      <i class="fas fa-building me-2" style="color: #3b82f6;"></i>Society Charges
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input name="societyCharges" type="number" id="societyCharges" class="form-control modern-input" 
+                             value="<%= maintenanceBill.societyCharges %>" min="0" step="0.01" required autofocus>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="repairsAndMaintenance">
+                      <i class="fas fa-tools me-2" style="color: #7c3aed;"></i>Repairs & Maintenance
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input name="repairsAndMaintenance" type="number" id="repairsAndMaintenance" class="form-control modern-input" 
+                             value="<%= maintenanceBill.repairsAndMaintenance %>" min="0" step="0.01" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="sinkingFund">
+                  <i class="fas fa-piggy-bank me-2" style="color: #059669;"></i>Sinking Fund
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">₹</span>
+                  <input name="sinkingFund" type="number" id="sinkingFund" class="form-control modern-input" 
+                         value="<%= maintenanceBill.sinkingFund %>" min="0" step="0.01" required>
+                </div>
+                <small class="form-text text-muted mt-1">
+                  <i class="fas fa-info-circle me-1"></i>Emergency fund for major repairs and improvements
+                </small>
+              </div>
+            </div>
+            
+            <!-- Utility Charges -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-lightbulb me-2"></i>Utility Charges
+              </h6>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="waterCharges">
+                      <i class="fas fa-tint me-2" style="color: #06b6d4;"></i>Water Charges
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input name="waterCharges" type="number" id="waterCharges" class="form-control modern-input" 
+                             value="<%= maintenanceBill.waterCharges %>" min="0" step="0.01" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="insuranceCharges">
+                      <i class="fas fa-shield-alt me-2" style="color: #dc2626;"></i>Insurance Charges
+                    </label>
+                    <div class="input-group">
+                      <span class="input-group-text">₹</span>
+                      <input name="insuranceCharges" type="number" id="insuranceCharges" class="form-control modern-input" 
+                             value="<%= maintenanceBill.insuranceCharges %>" min="0" step="0.01" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="parkingCharges">
+                  <i class="fas fa-car me-2" style="color: #f59e0b;"></i>Parking Charges
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">₹</span>
+                  <input name="parkingCharges" type="number" id="parkingCharges" class="form-control modern-input" 
+                         value="<%= maintenanceBill.parkingCharges %>" min="0" step="0.01" required>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Area-based Charges -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-ruler-combined me-2"></i>Area-based Charges
+              </h6>
+              
+              <div class="form-group">
+                <label class="form-label" for="squareFeetRate">
+                  <i class="fas fa-calculator me-2" style="color: #8b5cf6;"></i>Rate per Square Foot
+                </label>
+                <div class="input-group">
+                  <span class="input-group-text">₹</span>
+                  <input name="squareFeetRate" type="number" id="squareFeetRate" class="form-control modern-input" 
+                         value="<%= maintenanceBill.squareFeetRate %>" min="0" step="0.01" required>
+                  <span class="input-group-text">per sq ft</span>
+                </div>
+                <small class="form-text text-muted mt-1">
+                  <i class="fas fa-info-circle me-1"></i>This amount will be multiplied by each resident's flat area
+                </small>
+              </div>
+            </div>
+            
+            <!-- Help Text -->
+            <div class="alert alert-warning mb-4">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <strong>Important:</strong> Changes to these rates will affect all residents' bills. Please review carefully before saving.
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex gap-3 justify-content-end pt-3 border-top">
+              <a href="/bill" class="btn btn-modern-secondary">
+                <i class="fas fa-times me-1"></i>Cancel
+              </a>
+              <button type="submit" class="btn btn-modern-primary" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                <i class="fas fa-save me-1"></i>Update Bill Structure
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

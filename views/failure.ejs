@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Authentication Failed - Community Hub</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="description" content="Authentication failed">
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="modern-form-page">
+  <!-- Modern Failure Page -->
+  <div class="form-container">
+    <div class="container-fluid h-100">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10">
+          <div class="failure-card">
+            <div class="failure-header">
+              <div class="failure-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <h1 class="failure-title">Authentication Failed</h1>
+              <p class="failure-subtitle">We encountered an issue with your request</p>
+            </div>
+            
+            <div class="failure-content">
+              <div class="error-message">
+                <div class="error-icon">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <p class="error-text"><%= message %></p>
+              </div>
+              
+              <div class="action-buttons">
+                <a href="<%= href %>" class="btn btn-primary btn-modern btn-lg w-100 mb-3">
+                  <i class="fas fa-redo me-2"></i>Try Again
+                </a>
+                
+                <div class="divider">
+                  <span><%= messageSecondary %></span>
+                </div>
+                
+                <a href="<%= hrefSecondary %>" class="btn btn-success btn-modern btn-lg w-100 mb-3">
+                  <i class="fas fa-user-plus me-2"></i><%= buttonSecondary %>
+                </a>
+                
+                <a href="/" class="btn btn-light btn-modern btn-lg w-100">
+                  <i class="fas fa-home me-2"></i>Back to Home
+                </a>
+              </div>
+            </div>
+            
+            <!-- Decorative Elements -->
+            <div class="failure-decoration">
+              <div class="floating-shape shape-1"></div>
+              <div class="floating-shape shape-2"></div>
+              <div class="floating-shape shape-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Auto-redirect script -->
+  <script>
+    // Add subtle animation on load
+    document.addEventListener('DOMContentLoaded', function() {
+      const card = document.querySelector('.failure-card');
+      if (card) {
+        card.style.animation = 'fadeInScale 0.6s ease-out';
+      }
+    });
+  </script>
+</body>
+</html>

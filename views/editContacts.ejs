@@ -1,0 +1,131 @@
+<%- include('partials/header') %>
+
+<div class="page-container" style="padding: 2rem 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10 col-lg-8">
+        <div class="content-card">
+          <div class="card-header text-center">
+            <div class="card-title d-flex align-items-center justify-content-center">
+              <i class="fas fa-phone-alt me-2" style="color: #ef4444;"></i>
+              <span>Edit Emergency Contacts</span>
+            </div>
+            <p class="card-description mb-0">Update emergency contact numbers for your community</p>
+          </div>
+          
+          <form action="/editContacts" method="POST" class="modern-form">
+            <!-- Essential Services -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-briefcase-medical me-2"></i>Essential Services
+              </h6>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="doctor">
+                      <i class="fas fa-user-md me-2" style="color: #10b981;"></i>Doctor
+                    </label>
+                    <input name="doctor" type="tel" id="doctor" class="form-control modern-input" 
+                           value="<%= contact.doctor %>" placeholder="Enter doctor's number">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="ambulance">
+                      <i class="fas fa-ambulance me-2" style="color: #ef4444;"></i>Ambulance
+                    </label>
+                    <input name="ambulance" type="tel" id="ambulance" class="form-control modern-input" 
+                           value="<%= contact.ambulance %>" placeholder="Enter ambulance number">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label" for="medicineShop">
+                  <i class="fas fa-pills me-2" style="color: #3b82f6;"></i>Pharmacy
+                </label>
+                <input name="medicineShop" type="tel" id="medicineShop" class="form-control modern-input" 
+                       value="<%= contact.medicineShop %>" placeholder="Enter pharmacy number">
+              </div>
+            </div>
+            
+            <!-- Emergency Services -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-shield-alt me-2"></i>Emergency Services
+              </h6>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="policeStation">
+                      <i class="fas fa-badge me-2" style="color: #1e40af;"></i>Police Station
+                    </label>
+                    <input name="policeStation" type="tel" id="policeStation" class="form-control modern-input" 
+                           value="<%= contact.policeStation %>" placeholder="Enter police station number">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="fireStation">
+                      <i class="fas fa-fire-extinguisher me-2" style="color: #dc2626;"></i>Fire Station
+                    </label>
+                    <input name="fireStation" type="tel" id="fireStation" class="form-control modern-input" 
+                           value="<%= contact.fireStation %>" placeholder="Enter fire station number">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Maintenance Services -->
+            <div class="mb-4">
+              <h6 class="text-muted mb-3">
+                <i class="fas fa-tools me-2"></i>Maintenance Services
+              </h6>
+              
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="plumbingService">
+                      <i class="fas fa-wrench me-2" style="color: #7c3aed;"></i>Plumbing Service
+                    </label>
+                    <input name="plumbingService" type="tel" id="plumbingService" class="form-control modern-input" 
+                           value="<%= contact.plumbingService %>" placeholder="Enter plumber number" autofocus>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="form-label" for="guard">
+                      <i class="fas fa-user-shield me-2" style="color: #059669;"></i>Security Guard
+                    </label>
+                    <input name="guard" type="tel" id="guard" class="form-control modern-input" 
+                           value="<%= contact.guard %>" placeholder="Enter guard number">
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Help Text -->
+            <div class="alert alert-info mb-4">
+              <i class="fas fa-info-circle me-2"></i>
+              <strong>Note:</strong> These contact numbers will be visible to all residents. Please ensure they are accurate and up-to-date.
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex gap-3 justify-content-end pt-3 border-top">
+              <a href="/contacts" class="btn btn-modern-secondary">
+                <i class="fas fa-times me-1"></i>Cancel
+              </a>
+              <button type="submit" class="btn btn-modern-primary" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                <i class="fas fa-save me-1"></i>Save Contacts
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

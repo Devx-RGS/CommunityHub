@@ -1,0 +1,126 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-heading">
+      <span>Profile</span>
+    </div>
+    
+    <!-- Edit Profile Button -->
+    <div class="d-flex justify-content-center mb-4">
+      <a href="/editProfile" class="btn btn-primary">
+        <i class="fas fa-edit me-2"></i>Edit Profile
+      </a>
+    </div>
+
+    <!-- Personal Information Section -->
+    <div class="content-card mb-4">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-user me-2" style="color: #3b82f6;"></i>
+          <span>Personal Information</span>
+        </div>
+        <p class="card-description mb-0">Your personal details and contact information</p>
+      </div>
+      
+      <div class="profile-details">
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-signature text-primary"></i>
+            <span>Name</span>
+          </div>
+          <div class="profile-value"><%= resident.firstName %> <%= resident.lastName %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-phone text-primary"></i>
+            <span>Phone</span>
+          </div>
+          <div class="profile-value"><%= resident.phoneNumber %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-home text-primary"></i>
+            <span>Flat Number</span>
+          </div>
+          <div class="profile-value">
+            <span class="flat-number-badge"><%= resident.flatNumber %></span>
+          </div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-ruler-combined text-primary"></i>
+            <span>House Area</span>
+          </div>
+          <div class="profile-value"><%= resident.squareFeet %> sq ft</div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-envelope text-primary"></i>
+            <span>Email ID</span>
+          </div>
+          <div class="profile-value" style="word-break: break-all;"><%= resident.username %></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Society Information Section -->
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-building me-2" style="color: #10b981;"></i>
+          <span>Society Information</span>
+        </div>
+        <p class="card-description mb-0">Details about your residential community</p>
+      </div>
+      
+      <div class="profile-details">
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-building text-success"></i>
+            <span>Society Name</span>
+          </div>
+          <div class="profile-value"><%= society.societyName %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-map-marker-alt text-success"></i>
+            <span>Address</span>
+          </div>
+          <div class="profile-value"><%= society.societyAddress.address %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-city text-success"></i>
+            <span>City</span>
+          </div>
+          <div class="profile-value"><%= society.societyAddress.city %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-map text-success"></i>
+            <span>District</span>
+          </div>
+          <div class="profile-value"><%= society.societyAddress.district %></div>
+        </div>
+        
+        <div class="profile-item">
+          <div class="profile-label">
+            <i class="fas fa-mail-bulk text-success"></i>
+            <span>Postal Code</span>
+          </div>
+          <div class="profile-value"><%= society.societyAddress.postalCode %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

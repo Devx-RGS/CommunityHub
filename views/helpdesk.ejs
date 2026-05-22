@@ -1,0 +1,89 @@
+<%- include('partials/header') %>
+
+<div class="main-flex-wrapper helpdesk-page">
+  <div class="page-container">
+    <div class="container helpdesk-content">
+      <div class="page-heading">
+        <span><i class="fas fa-headset me-2"></i>Helpdesk</span>
+      </div>
+
+      <!-- Raise Complaint Button -->
+      <div class="d-flex justify-content-center mb-4">
+        <a href="/complaint" class="btn btn-modern-primary" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+          <i class="fas fa-exclamation-triangle me-2"></i>Raise Complaint
+        </a>
+      </div>
+      
+      <!-- Complaints Section -->
+      <div class="content-card">
+        <div class="card-header">
+          <div class="card-title d-flex align-items-center">
+            <i class="fas fa-ticket-alt me-2" style="color: #f59e0b;"></i>
+            <span>My Complaints</span>
+            <span class="ms-auto badge bg-warning rounded-pill"><%= complaints.length %></span>
+          </div>
+          <p class="card-description mb-0">Track the status of your submitted complaints</p>
+        </div>
+        
+        <div class="row g-4">
+          <% if(complaints.length === 0 || (complaints.length === 1 && complaints[0].category === 'You have not raised any complaint')) { %>
+            <div class="col-12">
+              <div class="empty-state text-center py-5">
+                <i class="fas fa-ticket-alt fa-3x mb-3" style="color: #94a3b8;"></i>
+                <h5 style="color: #64748b;">No Complaints Raised</h5>
+                <p style="color: #94a3b8;">You haven't raised any complaints yet. Click the button above to submit your first complaint.</p>
+              </div>
+            </div>
+          <% } else { %>
+            <% complaints.reverse().forEach((complaint, index) => { %>
+              <% if(complaint.category !== 'You have not raised any complaint') { %>
+                <div class="col-md-6 col-lg-4 mb-4">
+                  <div class="resident-card h-100">
+                    <div class="resident-header">
+                      <div class="resident-avatar" style="background: <%= complaint.status === 'open' ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : 'linear-gradient(135deg, #10b981 0%, #059669 100%)' %>;">
+                        <i class="fas fa-<%= complaint.type === 'Personal' ? 'user' : 'users' %>"></i>
+                      </div>
+                      <div class="resident-info">
+                        <h5 class="resident-name" style="font-size: 1rem;"><%= complaint.category %></h5>
+                        <span class="flat-number-badge" style="background: <%= complaint.status === 'open' ? '#f59e0b' : '#10b981' %>;"><%= complaint.status === 'open' ? 'Open' : 'Closed' %></span>
+                      </div>
+                    </div>
+                    
+                    <div class="resident-details">
+                      <div class="detail-item">
+                        <i class="fas fa-calendar-alt text-primary"></i>
+                        <span><%= complaint.date %></span>
+                      </div>
+                      <div class="detail-item">
+                        <i class="fas fa-tag text-primary"></i>
+                        <span><%= complaint.type %> Complaint</span>
+                      </div>
+                      <div class="detail-item" style="margin-top: 1rem; flex-direction: column; align-items: flex-start;">
+                        <i class="fas fa-file-alt text-primary"></i>
+                        <div style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.5; color: #000;">
+                          <%= complaint.description %>
+                        </div>
+                      </div>
+                      <div class="detail-item" style="margin-top: 1rem;">
+                        <i class="fas fa-<%= complaint.status === 'open' ? 'clock' : 'check-circle' %> text-primary"></i>
+                        <span style="color: <%= complaint.status === 'open' ? '#f59e0b' : '#10b981' %>; font-weight: 500;">
+                          <%= complaint.status === 'open' ? 'Under Review' : 'Resolved' %>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% } %>
+            <% }) %>
+          <% } %>
+        </div>
+        
+        <div class="alert alert-info mt-4">
+          <i class="fas fa-info-circle me-2"></i>
+          <strong>Note:</strong> Your complaints are reviewed by the facility management team. Response time is typically 24-48 hours for routine issues.
+        </div>
+      </div>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</div>

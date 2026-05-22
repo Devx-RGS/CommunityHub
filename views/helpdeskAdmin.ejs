@@ -1,0 +1,80 @@
+<!-- View all complaints ~admin -->
+<%- include('partials/header') %>
+
+<div class="main-flex-wrapper helpdesk-page">
+  <div class="page-container">
+    <div class="helpdesk-admin-content helpdesk-content">
+      <div class="page-heading text-center mb-4">
+        <span><i class="fas fa-headset me-2"></i>Helpdesk Admin</span>
+      </div>
+      
+      <div class="container container-profile">
+        <div class="row mb-4">
+          <div class="col-12 text-center">
+            <a href="/complaint" class="raise-complaint-btn">
+              <i class="fas fa-exclamation-triangle me-2"></i>RAISE COMPLAINT
+            </a>
+          </div>
+        </div>
+        
+        <div class="row">
+          <form action="/closeTicket" method="POST">
+            <% 
+              let hasOpenTickets = false;
+              users.forEach((user) => {
+                let isUserTicketOpen = user.complaints.some(ticket => ticket.status === 'open');
+                if(isUserTicketOpen) hasOpenTickets = true;
+              });
+            %>
+            
+            <% if(!hasOpenTickets) { %>
+              <div class="col-12">
+                <div class="no-complaints-message">
+                  <i class="fas fa-check-circle"></i>
+                  <h5>All Tickets Resolved</h5>
+                  <p>There are currently no open complaints to review.</p>
+                </div>
+              </div>
+            <% } else { %>
+              <% users.forEach((user) => { %>
+                <% let isUserTicketOpen = user.complaints.some(ticket => ticket.status === 'open') %>
+                <% if(isUserTicketOpen) { %>
+                  <div class="col-12">
+                    <div class="card card-profile ticket-card">
+                      <div class="card-body ticket-card-body">
+                        <% user.complaints.forEach((complaint,index) => { %>
+                          <% if(complaint.status==='open'){ %>
+                            <p>
+                              <i class="fas fa-plus-circle"></i> 
+                              <b><%= complaint.category %></b>
+                            </p>
+                            <p class="complaint-meta">
+                              <%= complaint.date %> - <%= complaint.type %><br>
+                              Raised by <%=user.firstName%> <%=user.lastName%> - <%=user.flatNumber%>
+                            </p>
+                            <p class="complaint-description"><%= complaint.description %></p>
+                            <button 
+                              type="submit" 
+                              name=ticket[<%= user._id %>] 
+                              value="<%= index %>" 
+                              class="close-ticket-btn">
+                              Close Ticket
+                            </button>
+                            <% if(user.complaints[index+1]){ %>
+                              <hr class="my-4">
+                            <% } %>
+                          <% } %>
+                        <% }) %>
+                      </div>
+                    </div>
+                  </div>
+                <% } %>
+              <% }) %>
+            <% } %>
+          </form>
+        </div>    
+      </div>
+    </div>
+  </div>
+  <%- include('partials/footer') %>
+</div>

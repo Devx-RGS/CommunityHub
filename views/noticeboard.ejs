@@ -1,0 +1,76 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-heading">
+      <span><i class="fas fa-bullhorn me-2"></i>Noticeboard</span>
+    </div>
+
+    <% if(isAdmin) { %>
+    <!-- Admin Create Button -->
+    <div class="d-flex justify-content-center mb-4">
+      <a href="/notice" class="btn btn-modern-primary">
+        <i class="fas fa-plus me-2"></i>Create Notice
+      </a>
+    </div>
+    <% } %>
+    
+    <!-- Notices Section -->
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-clipboard-list me-2" style="color: #3b82f6;"></i>
+          <span>Community Announcements</span>
+          <span class="ms-auto badge bg-primary rounded-pill"><%= notices.length %></span>
+        </div>
+        <p class="card-description mb-0">Latest news and announcements from community management</p>
+      </div>
+      
+      <div class="row g-4">
+        <% if(notices.length === 0) { %>
+          <div class="col-12">
+            <div class="text-center py-5">
+              <i class="fas fa-clipboard-list fa-3x mb-3" style="color: #94a3b8;"></i>
+              <h5 style="color: #64748b;">No Notices Available</h5>
+              <p style="color: #94a3b8;">No announcements have been posted yet.</p>
+            </div>
+          </div>
+        <% } else { %>
+          <% notices.reverse().forEach(function(notice, index) { %>
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="resident-card h-100">
+                <div class="resident-header">
+                  <div class="resident-avatar" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                    <i class="fas fa-bullhorn"></i>
+                  </div>
+                  <div class="resident-info">
+                    <h5 class="resident-name" style="font-size: 1rem;"><%= notice.subject %></h5>
+                    <span class="flat-number-badge" style="background: #3b82f6;">Notice #<%= notices.length - index %></span>
+                  </div>
+                </div>
+                
+                <div class="resident-details">
+                  <div class="detail-item">
+                    <i class="fas fa-calendar-alt text-primary"></i>
+                    <span><%= notice.date %></span>
+                  </div>
+                  <div class="detail-item">
+                    <i class="fas fa-user-shield text-primary"></i>
+                    <span>Published by Admin</span>
+                  </div>
+                  <div class="detail-item" style="margin-top: 1rem; flex-direction: column; align-items: flex-start;">
+                    <i class="fas fa-file-alt text-primary"></i>
+                    <div style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.5; color: #000;">
+                      <%= notice.details %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') %>

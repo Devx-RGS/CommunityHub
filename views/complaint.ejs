@@ -1,0 +1,82 @@
+<%- include('partials/header') %>
+
+<div class="page-container" style="padding: 2rem 0;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6">
+        <div class="content-card">
+          <div class="card-header text-center">
+            <div class="card-title d-flex align-items-center justify-content-center">
+              <i class="fas fa-exclamation-triangle me-2" style="color: #ef4444;"></i>
+              <span>Raise Complaint</span>
+            </div>
+            <p class="card-description mb-0">Submit your complaint and we'll address it promptly</p>
+          </div>
+          
+          <form action="/complaint" method="POST" class="modern-form">
+            <!-- Category Selection -->
+            <div class="form-group mb-3">
+              <label class="form-label" for="category">
+                <i class="fas fa-list me-2"></i>Category
+              </label>
+              <select name="category" id="category" class="form-control modern-input" required>
+                <option value="">Select a category</option>
+                <option value="Car Parking">Car Parking</option>
+                <option value="Common Area">Common Area</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Payment">Payment</option>
+                <option value="Plumbing">Plumbing</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <!-- Type Selection -->
+            <div class="form-group mb-4">
+              <label class="form-label mb-3">
+                <i class="fas fa-tags me-2"></i>Complaint Type
+              </label>
+              <div class="d-flex gap-4">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="type" id="Personal" value="Personal" required>
+                  <label class="form-check-label" for="Personal">
+                    <i class="fas fa-user me-1"></i>Personal
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="type" id="Community" value="Community" required>
+                  <label class="form-check-label" for="Community">
+                    <i class="fas fa-users me-1"></i>Community
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Description -->
+            <div class="form-group mb-4">
+              <label class="form-label" for="description">
+                <i class="fas fa-comment-alt me-2"></i>Description
+              </label>
+              <textarea name="description" id="description" class="form-control modern-input" rows="6" 
+                        placeholder="Please provide detailed information about your complaint..." required></textarea>
+              <small class="form-text text-muted mt-2">
+                <i class="fas fa-info-circle me-1"></i>Please be as specific as possible to help us resolve your issue quickly.
+              </small>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div class="d-flex gap-3 justify-content-end">
+              <a href="/helpdesk" class="btn btn-modern-secondary">
+                <i class="fas fa-times me-1"></i>Cancel
+              </a>
+              <button type="submit" class="btn btn-modern-primary" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                <i class="fas fa-paper-plane me-1"></i>Submit Complaint
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

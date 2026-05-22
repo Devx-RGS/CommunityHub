@@ -1,0 +1,217 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+  <div class="container">
+    <div class="page-heading">
+      <span><i class="fas fa-phone-alt me-2"></i>Emergency Contacts</span>
+    </div>
+
+    <% if(isAdmin) { %>
+    <!-- Admin Edit Button -->
+    <div class="d-flex justify-content-center mb-4">
+      <a href="/editContacts" class="btn btn-modern-primary">
+        <i class="fas fa-edit me-2"></i>Edit Contacts
+      </a>
+    </div>
+    <% } %>
+    
+    <!-- Emergency Contacts Section -->
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-shield-alt me-2" style="color: #ef4444;"></i>
+          <span>Emergency Services Directory</span>
+        </div>
+        <p class="card-description mb-0">Important contact numbers for emergency situations</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Essential Services -->
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                <i class="fas fa-user-md"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Doctor</h5>
+                <span class="flat-number-badge" style="background: #10b981;">Medical</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.doctor || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Medical Emergency</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                <i class="fas fa-ambulance"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Ambulance</h5>
+                <span class="flat-number-badge" style="background: #ef4444;">Emergency</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.ambulance || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Medical Transport</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);">
+                <i class="fas fa-pills"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Pharmacy</h5>
+                <span class="flat-number-badge" style="background: #3b82f6;">Medicine</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.medicineShop || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>24/7 Pharmacy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Emergency Services -->
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Police Station</h5>
+                <span class="flat-number-badge" style="background: #1e40af;">Law & Order</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.policeStation || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Emergency Response</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
+                <i class="fas fa-fire-extinguisher"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Fire Station</h5>
+                <span class="flat-number-badge" style="background: #dc2626;">Fire Safety</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.fireStation || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Fire & Rescue</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Maintenance Services -->
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                <i class="fas fa-wrench"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Plumbing Service</h5>
+                <span class="flat-number-badge" style="background: #7c3aed;">Maintenance</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.plumbingService || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Plumbing Issues</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="resident-card h-100">
+            <div class="resident-header">
+              <div class="resident-avatar" style="background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                <i class="fas fa-user-shield"></i>
+              </div>
+              <div class="resident-info">
+                <h5 class="resident-name">Security Guard</h5>
+                <span class="flat-number-badge" style="background: #059669;">Security</span>
+              </div>
+            </div>
+            
+            <div class="resident-details">
+              <div class="detail-item">
+                <i class="fas fa-phone text-primary"></i>
+                <span><%= contact.guard || 'Not Available' %></span>
+              </div>
+              <div class="detail-item">
+                <i class="fas fa-info-circle text-primary"></i>
+                <span>Society Security</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Important Notice -->
+      <div class="alert alert-info mt-4">
+        <i class="fas fa-info-circle me-2"></i>
+        <strong>Important:</strong> Keep these numbers handy for emergency situations. If any contact is not available, try the alternative emergency number 112 for immediate assistance.
+      </div>
+    </div>
+  </div>
+</div>
+  
+<%- include('partials/footer') %>

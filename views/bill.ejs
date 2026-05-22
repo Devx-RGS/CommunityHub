@@ -1,0 +1,277 @@
+<%- include('partials/header') %>
+
+<div class="page-container">
+  <div class="container">
+    <!-- Page Header -->
+    <div class="page-heading">
+      <span><i class="fas fa-file-invoice-dollar me-2"></i>Maintenance Bill</span>
+    </div>
+
+    <!-- Bill Content Card -->
+    <div class="content-card" id="print-content">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-file-invoice me-2" style="color: #3b82f6;"></i>
+          <span>Monthly Maintenance Bill</span>
+        </div>
+        <p class="card-description mb-0">Bill for <%= monthName %> <%= year %></p>
+      </div>
+
+      <!-- Bill Information -->
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <div class="info-item">
+            <label><i class="fas fa-building me-2"></i>Society:</label>
+            <span class="value"><%= society.societyName %></span>
+          </div>
+          <div class="info-item">
+            <label><i class="fas fa-home me-2"></i>Flat Number:</label>
+            <span class="value"><%= resident.flatNumber %></span>
+          </div>
+          <div class="info-item">
+            <label><i class="fas fa-user me-2"></i>Resident:</label>
+            <span class="value"><%= resident.firstName %> <%= resident.lastName %></span>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info-item">
+            <label><i class="fas fa-calendar me-2"></i>Bill Date:</label>
+            <span class="value"><%= date %></span>
+          </div>
+          <div class="info-item">
+            <label><i class="fas fa-ruler me-2"></i>Area (sq ft):</label>
+            <span class="value"><%= resident.squareFeet %></span>
+          </div>
+          <div class="info-item">
+            <label><i class="fas fa-phone me-2"></i>Contact:</label>
+            <span class="value"><%= resident.phoneNumber %></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bill Breakdown Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered modern-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Society Charges</td>
+              <td><%= society.maintenanceBill.societyCharges %></td>
+            </tr>
+            <tr>
+              <td>Repairs & Maintenance</td>
+              <td><%= society.maintenanceBill.repairsAndMaintenance %></td>
+            </tr>
+            <tr>
+              <td>Sinking Fund</td>
+              <td><%= society.maintenanceBill.sinkingFund %></td>
+            </tr>
+            <tr>
+              <td>Water Charges</td>
+              <td><%= society.maintenanceBill.waterCharges %></td>
+            </tr>
+            <tr>
+              <td>Insurance Charges</td>
+              <td><%= society.maintenanceBill.insuranceCharges %></td>
+            </tr>
+            <tr>
+              <td>Parking Charges</td>
+              <td><%= society.maintenanceBill.parkingCharges %></td>
+            </tr>
+            <tr>
+              <td>Area-based Charges (<%= resident.squareFeet %> sq ft × ₹<%= society.maintenanceBill.squareFeetRate %>)</td>
+              <td><%= (resident.squareFeet * society.maintenanceBill.squareFeetRate).toFixed(2) %></td>
+            </tr>
+            <% if (pendingDue > 0) { %>
+            <tr class="table-warning">
+              <td><strong>Pending Due (Previous Months)</strong></td>
+              <td><strong>₹<%= pendingDue %></strong></td>
+            </tr>
+            <% } %>
+            <% if (creditBalance > 0) { %>
+            <tr class="table-success">
+              <td><strong>Credit Balance</strong></td>
+              <td><strong>-₹<%= creditBalance %></strong></td>
+            </tr>
+            <% } %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td><strong>Total Amount Due</strong></td>
+              <td><strong>₹<%= totalAmount %></strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <!-- Payment Status -->
+      <% if (receipt && receipt.date) { %>
+      <div class="alert alert-success mt-4">
+        <i class="fas fa-check-circle me-2"></i>
+        <strong>Last Payment:</strong> ₹<%= receipt.amount %> on <%= new Date(receipt.date).toLocaleDateString() %>
+        <% if (receipt.invoice) { %>
+        <br><small>Invoice ID: <%= receipt.invoice %></small>
+        <% } %>
+      </div>
+      <% } %>
+
+      <!-- Action Buttons -->
+      <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+        <!-- Download Bill Button -->
+        <button id="download-btn" class="btn btn-modern-primary">
+          <i class="fas fa-download me-2"></i>Download Bill
+        </button>
+
+        <!-- Pay Bill Button -->
+        <% if (!receipt || !receipt.date) { %>
+        <button id="pay-btn" class="btn btn-pastel-success">
+          <i class="fas fa-credit-card me-2"></i>Pay Bill
+        </button>
+        <% } else { %>
+        <button class="btn btn-pastel-success" disabled>
+          <i class="fas fa-check me-2"></i>Bill Paid
+        </button>
+        <% } %>
+
+        <!-- Edit Bill Button (Admin Only) -->
+        <% if (resident.isAdmin) { %>
+        <a href="/editBill" class="btn btn-pastel-warning">
+          <i class="fas fa-edit me-2"></i>Edit Bill
+        </a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Accounting Section (Admin Only) -->
+    <% if (resident.isAdmin) { %>
+    <div class="content-card mt-4">
+      <div class="card-header">
+        <div class="card-title d-flex align-items-center">
+          <i class="fas fa-chart-line me-2" style="color: #3b82f6;"></i>
+          <span>Accounting Overview</span>
+        </div>
+        <p class="card-description mb-0">Payment status of all residents</p>
+      </div>
+
+      <div class="accounting-table-container" style="display: flex; justify-content: center; overflow-x: auto;">
+        <table class="table table-bordered modern-table" style="min-width: 600px;">
+          <thead>
+            <tr>
+              <th>Resident</th>
+              <th>Flat</th>
+              <th>Status</th>
+              <th>Amount Due</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% societyResidents.forEach((resident) => { %>
+              <!-- Calculate resident payment status start -->
+              <% function monthDiff(dateFrom, dateTo) { %>
+                <% return dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() - dateFrom.getFullYear())) %>
+              <% } %>
+              <% const dateToday = new Date(); %>
+              <% let totalMonth = 0  %>
+              <% let dateFrom = resident.createdAt; %>
+              <% if(resident.lastPayment && resident.lastPayment.date){ %>
+                <% dateFrom = resident.lastPayment.date; %>
+                <% totalMonth = monthDiff(dateFrom,dateToday) %>
+              <% } else { %>
+                <% totalMonth = monthDiff(dateFrom,dateToday) + 1 %>
+              <% } %>
+              <!-- Calculate monthly bill of society maintenance (excluding squareFeetRate) -->
+              <% const monthlyTotal = society.maintenanceBill.societyCharges + 
+                                    society.maintenanceBill.repairsAndMaintenance + 
+                                    society.maintenanceBill.sinkingFund + 
+                                    society.maintenanceBill.waterCharges + 
+                                    society.maintenanceBill.insuranceCharges + 
+                                    society.maintenanceBill.parkingCharges; %>
+              
+              <!-- Add square feet charges to monthly total -->
+              <% const squareFeetCharges = resident.squareFeet * society.maintenanceBill.squareFeetRate; %>
+              <% const totalMonthlyWithSquareFeet = monthlyTotal + squareFeetCharges; %>
+              
+              <% let credit = 0; %>
+              <% let due = 0; %>
+              <% if(totalMonth==0) { %>
+                <% credit = totalMonthlyWithSquareFeet; %>
+              <% } else if(totalMonth>1) { %>
+                <% due = (totalMonth-1) * totalMonthlyWithSquareFeet; %>
+              <% } %>
+              <% const totalAmount = totalMonthlyWithSquareFeet + due - credit %>
+              <!-- Calculate resident payment status end-->
+
+              <tr>
+                <td><%= resident.firstName %> <%= resident.lastName %></td>
+                <td><%= resident.flatNumber %></td>
+                <% if(totalAmount==0){ %>
+                  <td>
+                    <span class="badge badge-success d-flex align-items-center justify-content-center" style="width: fit-content; margin: 0 auto;">
+                      <i style="color: #10b981; margin-right: 5px;" class="fas fa-circle"></i>
+                      Paid
+                    </span>
+                  </td>
+                <% } else { %>
+                  <td>
+                    <span class="badge badge-danger d-flex align-items-center justify-content-center" style="width: fit-content; margin: 0 auto;">
+                      <i style="color: #ef4444; margin-right: 5px;" class="fas fa-circle"></i>
+                      Pending
+                    </span>
+                  </td>
+                <% } %>
+                <td><strong>₹<%= totalAmount.toFixed(2) %></strong></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Pay Bill functionality using existing Stripe integration
+    const payBtn = document.getElementById('pay-btn');
+    if (payBtn) {
+        payBtn.addEventListener('click', function() {
+            // Show loading state
+            payBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            payBtn.disabled = true;
+            
+            // Use existing Stripe checkout functionality
+            fetch('/checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.id) {
+                    // Redirect to Stripe checkout
+                    const stripe = Stripe('<%= publishableKey %>');
+                    stripe.redirectToCheckout({ sessionId: data.id });
+                } else {
+                    throw new Error('Failed to create checkout session');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error processing payment. Please try again.');
+                // Reset button
+                payBtn.innerHTML = '<i class="fas fa-credit-card me-2"></i>Pay Bill';
+                payBtn.disabled = false;
+            });
+        });
+    }
+});
+</script>
+
+<%- include('partials/footer') %>

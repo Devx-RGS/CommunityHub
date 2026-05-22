@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<div class="main-flex-wrapper">
+  <div class="page-container">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="page-heading">
+        <span><i class="fas fa-clock me-2"></i>Application Status</span>
+      </div>
+
+      <!-- Status Card -->
+      <div class="content-card">
+        <div class="card-header">
+          <div class="card-title d-flex align-items-center justify-content-center flex-column">
+            <div class="status-icon-container mb-3">
+              <i class="fas fa-4x <%= icon %> status-icon"></i>
+            </div>
+            <div class="text-center">
+              <h2 class="mb-2"><%= title %></h2>
+              <p class="card-description mb-0">Your application is currently under review</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center py-4">
+          <div class="alert alert-info modern-alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            <strong>Status Update:</strong> <%= content %>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex flex-wrap gap-3 justify-content-center mt-4">
+          <a href="/newRequest" class="btn btn-modern-primary">
+            <i class="fas fa-plus me-2"></i>New Request
+          </a>
+          <a href="/logout" class="btn btn-pastel-warning">
+            <i class="fas fa-sign-out-alt me-2"></i>Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <%- include('partials/footer') %>

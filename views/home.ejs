@@ -1,0 +1,115 @@
+<%- include('partials/header') %>
+
+<!-- Modern Dashboard -->
+<div class="modern-dashboard">
+  <div class="container-fluid px-4 py-5">
+    <!-- Welcome Section -->
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h1 class="dashboard-title">Welcome to Your Community Dashboard</h1>
+        <p class="dashboard-subtitle">Manage all your community activities in one place</p>
+      </div>
+    </div>
+    
+    <!-- Dashboard Cards -->
+    <div class="row g-4 justify-content-center">
+      <!-- Residents Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/residents'">
+          <div class="card-icon residents-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <div class="card-content">
+            <h3>Residents</h3>
+            <p>View and manage community members</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Noticeboard Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/noticeboard'">
+          <div class="card-icon noticeboard-icon">
+            <i class="fas fa-clipboard-list"></i>
+          </div>
+          <div class="card-content">
+            <h3>Noticeboard</h3>
+            <p>Community announcements and notices</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bill Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/bill'">
+          <div class="card-icon bill-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <div class="card-content">
+            <h3>Bill</h3>
+            <p>View and pay maintenance bills</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Helpdesk Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/helpdesk'">
+          <div class="card-icon helpdesk-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div class="card-content">
+            <h3>Helpdesk</h3>
+            <p>Submit and track maintenance requests</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Emergency Contacts Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/contacts'">
+          <div class="card-icon emergency-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <div class="card-content">
+            <h3>Emergency Contacts</h3>
+            <p>Important contact numbers</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Profile Card -->
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="dashboard-card" onclick="location.href='/profile'">
+          <div class="card-icon profile-icon">
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="card-content">
+            <h3>Profile</h3>
+            <p>Manage your account settings</p>
+          </div>
+          <div class="card-arrow">
+            <i class="fas fa-chevron-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>
