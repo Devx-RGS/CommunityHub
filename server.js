@@ -15,9 +15,11 @@ const date = require(__dirname+'/date/date');
 // Access environment variables
 dotenv.config();
 const stripe = require('stripe')(process.env.SECRET_KEY);
+const path = require('path');
 const app = express()
 app.set('view engine','ejs');
-app.use(express.static('public'));
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(path.join(__dirname, 'public')));
 // Middleware to handle HTTP post requests
 app.use(express.urlencoded({extended: true}));
 app.use(
